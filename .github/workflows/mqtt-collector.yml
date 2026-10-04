@@ -44,6 +44,7 @@ jobs:
           MESH_DB_TOKEN: ${{ steps.oidc.outputs.token }}
           MQTT_CLIENT_ID: graham-county-mesh-map-${{ github.run_id }}
         run: |
+          set +e
           timeout --signal=TERM --kill-after=15s 240s node src/mqtt.js \
             --protobufs-path "$RUNNER_TEMP/meshtastic-protobufs" \
             --mqtt-broker-url mqtt://mqtt.meshtastic.org \
@@ -69,3 +70,8 @@ jobs:
             --purge-service-envelopes-after-seconds 259200 \
             --purge-traceroutes-after-seconds 604800 \
             --purge-waypoints-after-seconds 604800
+          exit_code=$?
+          if [ "$exit_code" -ne 124 ]; then
+            exit "$exit_code"
+          fi
+          echo "Collector window ended normally after 240 seconds."
