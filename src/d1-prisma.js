@@ -78,8 +78,8 @@ function buildWhere(where = {}, params = []) {
         }
       }
     } else if (value !== undefined) {
-      clauses.push(`${key} = ?`);
-      params.push(encode(value));
+      if (value === null) clauses.push(`${key} IS NULL`);
+      else { clauses.push(`${key} = ?`); params.push(encode(value)); }
     }
   }
   return { sql: clauses.join(" AND ") };
