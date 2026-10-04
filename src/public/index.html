@@ -650,7 +650,6 @@
                             <div class="flex space-x-6 p-2 justify-center">
 
                                 <!-- sent messages -->
-                                <a target="_blank" :href="`/api/v1/text-messages/embed?from=${selectedNode.node_id}`" class="flex flex-col" title="Messages sent from this Node">
                                     <div class="flex mx-auto mb-1">
                                         <div class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -662,7 +661,6 @@
                                 </a>
 
                                 <!-- received messages -->
-                                <a target="_blank" :href="`/api/v1/text-messages/embed?to=${selectedNode.node_id}`" class="flex flex-col" title="Messages sent to this Node">
                                     <div class="flex mx-auto mb-1">
                                         <div class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -674,7 +672,6 @@
                                 </a>
 
                                 <!-- gated messages -->
-                                <a target="_blank" :href="`/api/v1/text-messages/embed?gateway_id=${selectedNode.node_id}`" class="flex flex-col" title="Messages gated to MQTT by this Node">
                                     <div class="flex mx-auto mb-1">
                                         <div class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
