@@ -6,8 +6,7 @@ const commandLineArgs = require("command-line-args");
 const commandLineUsage = require("command-line-usage");
 
 // create prisma db client
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("./d1-prisma");
 
 // return big ints as string when using JSON.stringify
 BigInt.prototype.toJSON = function() {
