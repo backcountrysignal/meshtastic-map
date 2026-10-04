@@ -75,6 +75,15 @@ app.use(compression());
 // serve files inside the public folder from /
 app.use('/', express.static(path.join(__dirname, 'public')));
 
+app.get('/health', async (req, res) => {
+    try {
+        await prisma.$queryRaw`SELECT 1 AS ok`;
+        res.json({ ok: true, service: 'graham-county-mesh-map' });
+    } catch (e) {
+        res.status(503).json({ ok: false });
+    }
+});
+
 app.get('/', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
