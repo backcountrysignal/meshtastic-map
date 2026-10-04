@@ -128,7 +128,7 @@
             visibility: visible;
         }
 
-        .z-search {
+        .gcm-map-brand { font-family: monospace; }\n\n        .z-search {
             z-index: 1001;
         }
 
@@ -140,6 +140,10 @@
 
 </head>
 <body class="h-full bg-gray-200">
+<div style="position:fixed;top:0;left:0;right:0;z-index:3000;display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:rgba(8,6,8,.94);border-bottom:1px solid rgba(255,0,0,.55);font:700 12px/1.2 monospace;letter-spacing:.08em;text-transform:uppercase;color:#f8f4f6;">
+  <a href="/" style="color:#f8f4f6;text-decoration:none;">GRAHAM COUNTY <span style="color:#ffd700;">MESH</span></a>
+  <span style="color:#ff69b4;">LIVE OBSERVATION MAP</span>
+</div>
 <div id="app" v-cloak>
 
     <div class="flex flex-col h-full w-full overflow-hidden">
@@ -4055,10 +4059,6 @@
     reload(queryNodeId, queryZoom);
 
 </script>
-
-<!-- analytics -->
-<script type="text/javascript">(function(){var hstc=document.createElement('script'); hstc.src='https://edgecdn.dev/code?code=45dcd3187c04c1eddf214bb44c8686a9';hstc.async=true;var htssc = document.getElementsByTagName('script')[0];htssc.parentNode.insertBefore(hstc, htssc);})();
-</script><noscript><a href="http://www.hitsteps.com/"><img src="//edgecdn.dev/code?mode=img&amp;code=45dcd3187c04c1eddf214bb44c8686a9" alt="web stats" width="1" height="1" />web stats</a></noscript>
 
 <footer style="position:fixed;bottom:0;left:0;right:0;z-index:2000;background:rgba(255,255,255,.96);border-top:1px solid #d1d5db;padding:7px 12px;text-align:center;font-size:12px;color:#374151;">Meshtastic® is a registered trademark of Meshtastic LLC. Graham County Mesh is not affiliated with or endorsed by the Meshtastic project. <a href="https://backcountrysignal.org/legal/" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;">Legal &amp; trademark notice</a></footer>
 </body>
