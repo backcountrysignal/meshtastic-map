@@ -358,7 +358,7 @@
                                 <!-- app info -->
                                 <div class="w-full mx-auto text-center">
                                     <img src="./icon.svg" class="mx-auto w-16 h-16 rounded mb-1"/>
-                                    <h1 class="font-bold">Meshtastic Map</h1>
+                                    <h1 class="font-bold">Graham County Mesh Map</h1>
                                     <h2>Created by <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a></h2>
                                     <div class="w-full mx-auto text-center space-x-1 mt-2">
 
@@ -399,7 +399,7 @@
 
                                 <!-- welcome -->
                                 <div class="bg-green-100 rounded p-2 border border-green-200">
-                                    👋 Welcome to my open source map of Meshtastic nodes heard on MQTT.
+                                    👋 Welcome to my open source map of Meshtastic® nodes heard on MQTT.
                                 </div>
 
                                 <!-- features -->
@@ -470,9 +470,8 @@
                                 <div>
                                     <div class="font-bold mb-2">Legal</div>
                                     <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                        <div>This project is not affiliated with or endorsed by the <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic</a> project.</div>
-                                        <div>The Meshtastic logo is the trademark of Meshtastic LLC.</div>
-                                        <div>Map tiles provided by <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+                                        <div>This project is not affiliated with or endorsed by the <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic®</a> project.</div>
+                                                                                <div>Map tiles provided by <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
                                     </div>
                                 </div>
 
@@ -525,7 +524,7 @@
                         <div class="p-2 border-b border-gray-200 shadow">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="font-bold">Meshtastic Devices</h2>
+                                    <h2 class="font-bold">Meshtastic® Devices</h2>
                                     <h3 class="text-sm">Ordered by most popular</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
@@ -2736,7 +2735,7 @@
 
     var openStreetMapTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 22, // increase from 18 to 22
-        attribution: 'Tiles &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>',
+        attribution: 'Tiles &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic®</a>',
     });
 
     var openTopoMapTileLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -2746,19 +2745,19 @@
 
     var esriWorldImageryTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 21, // esri doesn't have tiles closer than this
-        attribution: 'Tiles &copy; <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/deployment/basemap-attribution/">Esri</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Tiles &copy; <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/deployment/basemap-attribution/">Esri</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic®</a>'
     });
 
     var googleSatelliteTileLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
         maxZoom: 21,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic®</a>'
     });
 
     var googleHybridTileLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
         maxZoom: 21,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic®</a>'
     });
 
     var tileLayers = {
