@@ -1,0 +1,71 @@
+name: Meshtastic MQTT collector
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: meshtastic-map-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out collector
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --omit=dev --no-audit --no-fund
+
+      - name: Fetch pinned Meshtastic protobufs
+        run: git clone --depth 1 --branch v2.8.0 https://github.com/meshtastic/protobufs.git "$RUNNER_TEMP/meshtastic-protobufs"
+
+      - name: Mint GitHub OIDC token
+        id: oidc
+        uses: actions/github-script@v7
+        with:
+          script: core.setOutput("token", await core.getIDToken("https://backcountrysignal.org"))
+
+      - name: Collect MQTT observations
+        env:
+          MESH_DB_HOST: https://backcountrysignal.org/api/map-db
+          MESH_DB_TOKEN: ${{ steps.oidc.outputs.token }}
+          MQTT_CLIENT_ID: graham-county-mesh-map-${{ github.run_id }}
+        run: |
+          timeout --signal=TERM --kill-after=15s 240s node src/mqtt.js \
+            --protobufs-path "$RUNNER_TEMP/meshtastic-protobufs" \
+            --mqtt-broker-url mqtt://mqtt.meshtastic.org \
+            --mqtt-username meshdev \
+            --mqtt-password large4cats \
+            --mqtt-client-id "$MQTT_CLIENT_ID" \
+            --mqtt-topic msh/# \
+            --collect-positions \
+            --collect-waypoints \
+            --collect-neighbour-info \
+            --collect-map-reports \
+            --drop-packets-not-ok-to-mqtt \
+            --old-firmware-position-precision 4 \
+            --forget-outdated-node-positions-after-seconds 1209600 \
+            --purge-interval-seconds 3600 \
+            --purge-device-metrics-after-seconds 604800 \
+            --purge-environment-metrics-after-seconds 604800 \
+            --purge-power-metrics-after-seconds 604800 \
+            --purge-map-reports-after-seconds 604800 \
+            --purge-neighbour-infos-after-seconds 604800 \
+            --purge-nodes-unheard-for-seconds 2592000 \
+            --purge-positions-after-seconds 2592000 \
+            --purge-service-envelopes-after-seconds 259200 \
+            --purge-traceroutes-after-seconds 604800 \
+            --purge-waypoints-after-seconds 604800
