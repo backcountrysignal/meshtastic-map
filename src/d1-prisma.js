@@ -14,9 +14,11 @@ function encode(value) {
 }
 
 async function query(sql, params = []) {
-  const response = await fetch(`${DB_HOST}/query`, {
+  const headers = { "content-type": "application/json" };
+  if (process.env.MESH_DB_TOKEN) headers.authorization = `Bearer ${process.env.MESH_DB_TOKEN}`;
+  const response = await fetch(`${DB_HOST}`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers,
     body: JSON.stringify({ sql, params: encode(params) }),
   });
   if (!response.ok) throw new Error(`D1 query failed: ${response.status} ${await response.text()}`);
