@@ -1,4 +1,4 @@
-<h2 align="center">Meshtastic Map</h2>
+<h2 align="center">Graham County Mesh — Local Radio Map</h2>
 
 <p align="center">
 <a href="https://discord.gg/K55zeZyHKK"><img src="https://img.shields.io/badge/Discord-Liam%20Cottle's%20Discord-%237289DA?style=flat&logo=discord" alt="discord"/></a>
@@ -8,7 +8,7 @@
 <a href="./donate.md"><img src="https://img.shields.io/badge/Donate%20Bitcoin-bc1qy22smke8n4c54evdxmp7lpy9p0e6m9tavtlg2q-%23FF9900?style=flat&logo=bitcoin" alt="donate bitcoin"/></a>
 </p>
 
-A map of all Meshtastic nodes heard via MQTT.
+A Graham County Mesh map of publicly observed nodes using Meshtastic® technology via MQTT.
 
 My version of the map is available at https://meshtastic.liamcottle.net
 
@@ -226,7 +226,7 @@ MIT
 
 This project is not affiliated with or endorsed by the Meshtastic project.
 
-The Meshtastic logo is the trademark of Meshtastic LLC.
+Meshtastic® is a registered trademark of Meshtastic LLC. This fork is not affiliated with or endorsed by the Meshtastic project.
 
 ## References
 
