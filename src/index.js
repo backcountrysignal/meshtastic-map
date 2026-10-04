@@ -6,8 +6,7 @@ const commandLineArgs = require("command-line-args");
 const commandLineUsage = require("command-line-usage");
 
 // create prisma db client
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("./d1-prisma");
 
 // return big ints as string when using JSON.stringify
 BigInt.prototype.toJSON = function() {
@@ -75,6 +74,15 @@ app.use(compression());
 
 // serve files inside the public folder from /
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+app.get('/health', async (req, res) => {
+    try {
+        await prisma.$queryRaw`SELECT 1 AS ok`;
+        res.json({ ok: true, service: 'graham-county-mesh-map' });
+    } catch (e) {
+        res.status(503).json({ ok: false });
+    }
+});
 
 app.get('/', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -420,7 +428,7 @@ app.get('/api/v1/nodes/:nodeId/mqtt-metrics', async (req, res) => {
         }
 
         // get mqtt topics published to by this node
-        const queryResult = await prisma.$queryRaw`select mqtt_topic, count(*) as packet_count, max(created_at) as last_packet_at from service_envelopes where gateway_id = ${nodeId} group by mqtt_topic order by packet_count desc;`;
+        const queryResult = await prisma.$queryRaw`select mqtt_topic, count(*) as packet_count, max(created_at) as last_packet_at from map_service_envelopes where gateway_id = ${nodeId} group by mqtt_topic order by packet_count desc;`;
 
         res.json({
             mqtt_metrics: queryResult,

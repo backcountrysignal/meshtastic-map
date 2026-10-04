@@ -8,8 +8,7 @@ const commandLineUsage = require("command-line-usage");
 const PositionUtil = require("./utils/position_util");
 
 // create prisma db client
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("./d1-prisma");
 
 // meshtastic bitfield flags
 const BITFIELD_OK_TO_MQTT_SHIFT = 0;
@@ -222,7 +221,7 @@ const allowedPortnums = options["allowed-portnums"] ?? null;
 const logUnknownPortnums = options["log-unknown-portnums"] ?? false;
 const collectServiceEnvelopes = options["collect-service-envelopes"] ?? false;
 const collectPositions = options["collect-positions"] ?? false;
-const collectTextMessages = options["collect-text-messages"] ?? false;
+const collectTextMessages = false; // Public map never stores message content.
 const ignoreDirectMessages = options["ignore-direct-messages"] ?? false;
 const collectWaypoints = options["collect-waypoints"] ?? false;
 const collectNeighbourInfo = options["collect-neighbour-info"] ?? false;
@@ -230,7 +229,7 @@ const collectMapReports = options["collect-map-reports"] ?? false;
 const decryptionKeys = options["decryption-keys"] ?? [
     "1PG7OiApB1nwvP+rz05pAQ==", // add default "AQ==" decryption key
 ];
-const dropPacketsNotOkToMqtt = options["drop-packets-not-ok-to-mqtt"] ?? false;
+const dropPacketsNotOkToMqtt = options["drop-packets-not-ok-to-mqtt"] ?? true;
 const dropPortnumsWithoutBitfield = options["drop-portnums-without-bitfield"] ?? null;
 const oldFirmwarePositionPrecision = options["old-firmware-position-precision"] ?? null;
 const forgetOutdatedNodePositionsAfterSeconds = options["forget-outdated-node-positions-after-seconds"] ?? null;
