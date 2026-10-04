@@ -428,7 +428,7 @@ app.get('/api/v1/nodes/:nodeId/mqtt-metrics', async (req, res) => {
         }
 
         // get mqtt topics published to by this node
-        const queryResult = await prisma.$queryRaw`select mqtt_topic, count(*) as packet_count, max(created_at) as last_packet_at from service_envelopes where gateway_id = ${nodeId} group by mqtt_topic order by packet_count desc;`;
+        const queryResult = await prisma.$queryRaw`select mqtt_topic, count(*) as packet_count, max(created_at) as last_packet_at from map_service_envelopes where gateway_id = ${nodeId} group by mqtt_topic order by packet_count desc;`;
 
         res.json({
             mqtt_metrics: queryResult,
