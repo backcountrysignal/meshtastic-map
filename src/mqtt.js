@@ -270,6 +270,11 @@ const client = mqtt.connect(mqttBrokerUrl, {
     username: mqttUsername,
     password: mqttPassword,
     clientId: mqttClientId,
+    protocolVersion: 4,
+    clean: true,
+    keepalive: 60,
+    reconnectPeriod: 5000,
+    connectTimeout: 30000,
 });
 
 // load protobufs
@@ -716,6 +721,7 @@ client.on("connect", () => {
     }
 });
 client.on("error", (error) => console.error("MQTT error", error.message));
+client.on("disconnect", (packet) => console.error("MQTT broker disconnect", packet?.reasonCode ?? "no reason code", packet?.properties ?? {}));
 client.on("close", () => console.log("MQTT connection closed"));
 client.on("offline", () => console.log("MQTT offline"));
 
