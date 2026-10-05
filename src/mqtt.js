@@ -705,14 +705,24 @@ function convertHexIdToNumericId(hexId) {
 }
 
 // subscribe to everything when connected
+let receivedCount = 0;
 client.on("connect", () => {
+    console.log("MQTT connected", { broker: mqttBrokerUrl, topics: mqttTopics });
     for(const mqttTopic of mqttTopics){
-        client.subscribe(mqttTopic);
+        client.subscribe(mqttTopic, (error) => {
+            if(error) console.error("MQTT subscribe failed", mqttTopic, error.message);
+            else console.log("MQTT subscribed", mqttTopic);
+        });
     }
 });
+client.on("error", (error) => console.error("MQTT error", error.message));
+client.on("close", () => console.log("MQTT connection closed"));
+client.on("offline", () => console.log("MQTT offline"));
 
 // handle message received
 client.on("message", async (topic, message) => {
+    receivedCount++;
+    if(receivedCount === 1 || receivedCount % 1000 === 0) console.log("MQTT packets received", receivedCount, "latest topic", topic);
     try {
 
         // decode service envelope
