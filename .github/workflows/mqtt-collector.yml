@@ -52,7 +52,7 @@ jobs:
           set +e
           timeout --signal=TERM --kill-after=15s 240s node src/mqtt.js \
             --protobufs-path "$RUNNER_TEMP/meshtastic-protobufs" \
-            --mqtt-broker-url mqtt://mqtt.meshtastic.org \
+            --mqtt-broker-url mqtts://mqtt.meshtastic.org:8883 \
             --mqtt-username meshdev \
             --mqtt-password large4cats \
             --mqtt-client-id "$MQTT_CLIENT_ID" \
