@@ -1,6 +1,11 @@
 name: Meshtastic MQTT collector
 
 on:
+  push:
+    branches: ["master"]
+    paths:
+      - "src/**"
+      - ".github/workflows/mqtt-collector.yml"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
